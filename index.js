@@ -1,0 +1,1 @@
+console.log('Консолька работаеgit commit -m "first commit"')

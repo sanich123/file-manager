@@ -1,0 +1,15 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "This is a project on node.js course by RSSchool",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "node.js",
+    "file-manager"
+  ],
+  "author": "Voronin A",
+  "license": "ISC"
+}

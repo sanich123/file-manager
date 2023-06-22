@@ -1,1 +1,1 @@
-console.log('Консолька работаеgit commit -m "first commit"')
+console.log(process.env.args)

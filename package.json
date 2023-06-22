@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "This is a project on node.js course by RSSchool",
   "main": "index.js",
+  "type":"module",
   "scripts": {
-    "start": "node index.js -- --username=Eric Cartman"
+    "start": "node index.js -- --username=Onotole"
   },
   "keywords": [
     "node.js",

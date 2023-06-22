@@ -1,9 +1,16 @@
-import { showCurrentPlace, sayHelloGoodbyeUser, exitHandler } from "./utils/utils.js";
-import process, { stdin, stdout, exit } from "process";
+import { showCurrentPlace, sayHelloGoodbyeUser, exitHandler, goUpDirection, goToExactFolder, showFolderContent } from "./utils/utils.js";
+import { stdin, stdout } from "process";
 
-(function fileManager() {
+function fileManager() {
   const { userName } = sayHelloGoodbyeUser();
   showCurrentPlace();
-  stdin.on("data", (data) => exitHandler(data, userName));
-})()
+  stdin.on("data", (userInput) => {
+    const clearData = userInput.toString().trim();
+    if (clearData.includes("up")) goUpDirection();
+    if (clearData.includes("cd")) goToExactFolder(clearData);
+    if (clearData.includes("ls")) showFolderContent();
+    exitHandler(userInput, userName);
+  });
+}
 
+fileManager();

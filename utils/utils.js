@@ -1,6 +1,11 @@
 import { stdout, argv, exit, cwd, chdir } from "process";
-import { sep } from "path";
-import { readdir } from "fs";
+import { sep, extname, join, dirname } from "path";
+import { readdir } from "fs/promises";
+import { fileURLToPath } from "url";
+import { cliOutputFormatter } from "./output-formatter.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export function sayHelloGoodbyeUser() {
   const userName = argv[3].split("=")[1];
@@ -48,14 +53,21 @@ export function goToExactFolder(userInput) {
 
 export async function showFolderContent() {
   try {
-    const fileNames = readdir(cwd(), (err, files) => {
-      if (err) {
-        console.log(err.message);
-      } else {
-        console.log(files);
+    const filesDirents = await readdir(cwd(), { withFileTypes: true });
+    const folders = [];
+    const files = [];
+
+    filesDirents.forEach((file) => {
+      if (file.isDirectory()) {
+        folders.push(["directory", file.name]);
+      }
+      if (file.isFile()) {
+        files.push(["file", file.name]);
       }
     });
-    console.log(fileNames)
+
+    const finalList = [...folders.sort(), ...files.sort()];
+    console.log(cliOutputFormatter(finalList));
   } catch ({ message }) {
     console.log(message);
   }

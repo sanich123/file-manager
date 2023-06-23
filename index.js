@@ -1,19 +1,19 @@
 import { showCurrentPlace, sayHelloGoodbyeUser, exitHandler, goUpDirection, goToExactFolder, showFolderContent } from "./utils/utils.js";
-import { stdin, stdout } from "process";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { stdin } from "process";
 
 function fileManager() {
   const { userName } = sayHelloGoodbyeUser();
   showCurrentPlace();
   stdin.on("data", (userInput) => {
-    const clearData = userInput.toString().trim();
-    if (clearData.includes("up")) goUpDirection();
-    else if (clearData.includes("cd")) goToExactFolder(clearData);
-    else if (clearData.includes("ls")) showFolderContent();
+    const clearedData = userInput.toString().trim()
+    const command = clearedData.slice(0, 2);
+
+    if (command === "up") goUpDirection();
+    else if (command === "cd") goToExactFolder(clearedData);
+    else if (command === "ls") showFolderContent();
+    else if (command === 'cat') {
+      readFile();
+    }
     exitHandler(userInput, userName);
   });
 }

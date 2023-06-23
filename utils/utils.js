@@ -1,11 +1,7 @@
 import { stdout, argv, exit, cwd, chdir } from "process";
-import { sep, extname, join, dirname } from "path";
+import { sep } from "path";
 import { readdir } from "fs/promises";
-import { fileURLToPath } from "url";
 import { cliOutputFormatter } from "./output-formatter.js";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 export function sayHelloGoodbyeUser() {
   const userName = argv[3].split("=")[1];

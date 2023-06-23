@@ -38,7 +38,8 @@ export function goUpDirection() {
 }
 
 export function goToExactFolder(userInput) {
-  const clearedPath = userInput.toString().replace("cd", "").trim();
+  const { clearedPath, hasArguments } = getArgumentsFromPath(userInput);
+  if (!hasArguments) return;
   try {
     chdir(clearedPath);
     showCurrentPlace();
@@ -67,4 +68,15 @@ export async function showFolderContent() {
   } catch ({ message }) {
     console.log(message);
   }
+}
+
+export function getArgumentsFromPath(path) {
+  const hasArguments = path.indexOf(" ") !== -1;
+  let clearedPath;
+  if (hasArguments) {
+    clearedPath = path.slice(path.indexOf(" ")).trim();
+  } else {
+    console.log("You haven't pass arguments to our app. Try with arguments!");
+  }
+  return { clearedPath, hasArguments };
 }

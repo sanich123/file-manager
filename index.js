@@ -4,6 +4,8 @@ import { addFile } from "./modules/add-file.js";
 import { removeFile } from "./modules/remove-file.js";
 import { renameFile } from "./modules/rename-file.js";
 import { copyOrMoveFile } from "./modules/copy-move-file.js";
+import { getOsInfo } from "./modules/get-os-info.js";
+import { hashCalculator } from "./modules/hash-calculator.js";
 import { stdin } from "process";
 
 function fileManager() {
@@ -21,6 +23,8 @@ function fileManager() {
     else if (command.includes("rn")) renameFile(clearedData);
     else if (command.includes("cp")) copyOrMoveFile(clearedData, "copy");
     else if (command.includes("mv")) copyOrMoveFile(clearedData, "move");
+    else if (command.includes("os")) getOsInfo(clearedData);
+    else if (command.includes("has")) hashCalculator(clearedData);
     exitHandler(userInput, userName);
   });
 }

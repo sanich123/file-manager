@@ -80,3 +80,10 @@ export function getArgumentsFromPath(path) {
   }
   return { clearedPath, hasArguments };
 }
+
+export function getClearedCommand(userInput) {
+  const clearedData = userInput.toString().trim();
+  const commandZone = clearedData.slice(0, 10);
+  const command = commandZone.includes(" ") ? clearedData.slice(0, clearedData.indexOf(" ")) : commandZone;
+  return { clearedData, command };
+}

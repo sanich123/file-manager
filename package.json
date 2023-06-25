@@ -5,15 +5,12 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon node index.js -- --username=Onotole"
+    "start": "node index.js -- --username=Onotole"
   },
   "keywords": [
     "node.js",
     "file-manager"
   ],
   "author": "Voronin A",
-  "license": "ISC",
-  "dependencies": {
-    "nodemon": "^2.0.22"
-  }
+  "license": "ISC"
 }
